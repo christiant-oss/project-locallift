@@ -21,15 +21,15 @@
 }
 
 .app.dark {
-  --bg: #0b1220;
+  --bg: #081120;
   --sidebar: #020617;
-  --panel: #111827;
-  --panel-2: #182235;
+  --panel: #0f172a;
+  --panel-2: #162033;
   --text: #f8fafc;
-  --muted: #94a3b8;
-  --border: #243041;
+  --muted: #cbd5e1;
+  --border: #334155;
   --primary: #60a5fa;
-  --primary-soft: #1e3a8a;
+  --primary-soft: #1d4ed8;
   --success: #22c55e;
   --warning: #fbbf24;
   --danger: #f87171;
@@ -53,6 +53,7 @@ select {
   display: grid;
   grid-template-columns: 250px 1fr;
   background: var(--bg);
+  color: var(--text);
 }
 
 .sidebar {
@@ -80,11 +81,14 @@ select {
   place-items: center;
   background: var(--primary);
   font-weight: bold;
+  font-size: 1.1rem;
+  color: white;
 }
 
 .brand h2 {
   font-size: 1.4rem;
   margin-bottom: 2px;
+  color: white;
 }
 
 .brand p {
@@ -145,6 +149,7 @@ select {
 .topbar h1 {
   font-size: 2.2rem;
   margin-bottom: 8px;
+  color: var(--text);
 }
 
 .subtext {
@@ -176,6 +181,7 @@ select {
   padding: 11px 16px;
   cursor: pointer;
   border: none;
+  transition: 0.2s ease;
 }
 
 .primary-btn {
@@ -183,10 +189,18 @@ select {
   color: white;
 }
 
+.primary-btn:hover {
+  opacity: 0.92;
+}
+
 .secondary-btn {
   background: var(--panel);
   color: var(--text);
   border: 1px solid var(--border);
+}
+
+.secondary-btn:hover {
+  background: var(--panel-2);
 }
 
 .system-message {
@@ -224,6 +238,7 @@ select {
 .stat-card h3 {
   font-size: 1.8rem;
   margin-bottom: 6px;
+  color: var(--text);
 }
 
 .stat-card p {
@@ -271,11 +286,12 @@ select {
 
 .panel-header h2 {
   font-size: 1.4rem;
+  color: var(--text);
 }
 
 .count-pill {
   background: var(--primary-soft);
-  color: var(--primary);
+  color: white;
   padding: 8px 12px;
   border-radius: 999px;
   font-size: 0.85rem;
@@ -305,6 +321,7 @@ select {
 .inventory-head h3 {
   margin-bottom: 6px;
   font-size: 1.08rem;
+  color: var(--text);
 }
 
 .inventory-head p {
@@ -384,6 +401,7 @@ select {
   justify-content: space-between;
   gap: 10px;
   margin-bottom: 8px;
+  color: var(--text);
 }
 
 .progress-bar-wrap {
@@ -398,6 +416,53 @@ select {
 .progress-bar {
   height: 100%;
   background: linear-gradient(90deg, var(--primary), #22c55e);
+}
+
+.app.dark .topbar h1,
+.app.dark .panel h2,
+.app.dark .inventory-head h3,
+.app.dark .stat-card h3,
+.app.dark strong,
+.app.dark .nav-btn,
+.app.dark .theme-toggle,
+.app.dark .goal-top,
+.app.dark .count-pill {
+  color: #f8fafc;
+}
+
+.app.dark .subtext,
+.app.dark .impact-text,
+.app.dark .alerts-list,
+.app.dark .stat-card p,
+.app.dark .inventory-head p,
+.app.dark .info-label,
+.app.dark .system-message,
+.app.dark .stat-card span {
+  color: #cbd5e1;
+}
+
+.app.dark .secondary-btn {
+  background: #182235;
+  color: #f8fafc;
+  border: 1px solid #334155;
+}
+
+.app.dark .inventory-card,
+.app.dark .panel,
+.app.dark .stat-card,
+.app.dark .toolbar input,
+.app.dark .toolbar select,
+.app.dark .system-message {
+  background: #0f172a;
+}
+
+.app.dark .inventory-card,
+.app.dark .panel,
+.app.dark .stat-card,
+.app.dark .toolbar input,
+.app.dark .toolbar select,
+.app.dark .system-message {
+  border: 1px solid #334155;
 }
 
 @media (max-width: 1200px) {
