@@ -1,620 +1,173 @@
+import "./App.css";
+
 function App() {
   const businesses = [
     {
       id: 1,
       name: "Brooklyn Bites Cafe",
       category: "Restaurant",
-      owner: "Maria Santos",
       inventoryStatus: "Low Stock",
-      weeklySales: 1240,
+      weeklySales: "$1,240",
       accessibility: "Needs alt text updates",
-      accessibilityStatus: "Needs Review",
-      lastUpdated: "Today",
+      owner: "Maria Lopez",
       location: "Brooklyn, NY",
     },
     {
       id: 2,
       name: "Flatbush Fashion",
       category: "Retail",
-      owner: "Jamal Reed",
       inventoryStatus: "In Stock",
-      weeklySales: 2980,
+      weeklySales: "$2,980",
       accessibility: "WCAG check passed",
-      accessibilityStatus: "Passed",
-      lastUpdated: "Yesterday",
+      owner: "Jamal Carter",
       location: "Flatbush, NY",
     },
     {
       id: 3,
       name: "Crown Heights Prints",
       category: "Print Shop",
-      owner: "Alicia Brown",
       inventoryStatus: "Medium Stock",
-      weeklySales: 1875,
+      weeklySales: "$1,875",
       accessibility: "Missing button labels",
-      accessibilityStatus: "Needs Review",
-      lastUpdated: "2 days ago",
+      owner: "Sonia Patel",
       location: "Crown Heights, NY",
-    },
-    {
-      id: 4,
-      name: "Sunrise Grocers",
-      category: "Grocery",
-      owner: "David Chen",
-      inventoryStatus: "Low Stock",
-      weeklySales: 3425,
-      accessibility: "Color contrast needs improvement",
-      accessibilityStatus: "Needs Review",
-      lastUpdated: "Today",
-      location: "Bed-Stuy, NY",
     },
   ];
 
-  const totalBusinesses = businesses.length;
-  const lowStockCount = businesses.filter(
-    (business) => business.inventoryStatus === "Low Stock"
-  ).length;
-  const accessibilityIssues = businesses.filter(
-    (business) => business.accessibilityStatus === "Needs Review"
-  ).length;
-  const totalWeeklySales = businesses.reduce(
-    (sum, business) => sum + business.weeklySales,
-    0
-  );
-
-  const formatCurrency = (amount: number) => {
-    return amount.toLocaleString("en-US", {
-      style: "currency",
-      currency: "USD",
-      maximumFractionDigits: 0,
-    });
-  };
-
-  const getInventoryBadgeStyle = (status: string) => {
-    const baseStyle = {
-      display: "inline-block",
-      padding: "6px 12px",
-      borderRadius: "999px",
-      fontSize: "13px",
-      fontWeight: "600",
-    };
-
-    if (status === "Low Stock") {
-      return {
-        ...baseStyle,
-        backgroundColor: "#fee2e2",
-        color: "#b91c1c",
-      };
-    }
-
-    if (status === "Medium Stock") {
-      return {
-        ...baseStyle,
-        backgroundColor: "#fef3c7",
-        color: "#92400e",
-      };
-    }
-
-    return {
-      ...baseStyle,
-      backgroundColor: "#dcfce7",
-      color: "#166534",
-    };
-  };
-
-  const getAccessibilityBadgeStyle = (status: string) => {
-    const baseStyle = {
-      display: "inline-block",
-      padding: "6px 12px",
-      borderRadius: "999px",
-      fontSize: "13px",
-      fontWeight: "600",
-    };
-
-    if (status === "Passed") {
-      return {
-        ...baseStyle,
-        backgroundColor: "#dcfce7",
-        color: "#166534",
-      };
-    }
-
-    return {
-      ...baseStyle,
-      backgroundColor: "#ede9fe",
-      color: "#6d28d9",
-    };
-  };
-
-  const cardStyle = {
-    background: "#ffffff",
-    borderRadius: "22px",
-    padding: "24px",
-    boxShadow: "0 10px 30px rgba(15, 23, 42, 0.08)",
-    border: "1px solid #e2e8f0",
-  };
-
   return (
-    <div
-      style={{
-        minHeight: "100vh",
-        background:
-          "linear-gradient(to bottom, #f8fafc 0%, #eef2ff 100%)",
-        padding: "32px",
-        fontFamily: "Arial, sans-serif",
-        color: "#0f172a",
-      }}
-    >
-      <div style={{ maxWidth: "1250px", margin: "0 auto" }}>
-        <header
-          style={{
-            ...cardStyle,
-            marginBottom: "24px",
-            padding: "32px",
-            background:
-              "linear-gradient(135deg, #ffffff 0%, #f8fafc 100%)",
-          }}
-        >
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              flexWrap: "wrap",
-              gap: "16px",
-            }}
-          >
-            <div>
-              <p
-                style={{
-                  margin: "0 0 10px 0",
-                  color: "#4f46e5",
-                  fontWeight: "700",
-                  fontSize: "14px",
-                  letterSpacing: "0.5px",
-                  textTransform: "uppercase",
-                }}
-              >
-                LocalLift Dashboard
-              </p>
-              <h1
-                style={{
-                  margin: 0,
-                  fontSize: "40px",
-                  lineHeight: "1.1",
-                }}
-              >
-                Project LocalLift
-              </h1>
-              <p
-                style={{
-                  marginTop: "12px",
-                  color: "#475569",
-                  fontSize: "17px",
-                  maxWidth: "700px",
-                  lineHeight: "1.6",
-                }}
-              >
-                A small business digital toolkit prototype focused on inventory
-                visibility, accessibility awareness, and simple business insights
-                for local communities.
-              </p>
-            </div>
-
-            <div
-              style={{
-                backgroundColor: "#eef2ff",
-                color: "#312e81",
-                padding: "14px 18px",
-                borderRadius: "16px",
-                fontWeight: "600",
-                minWidth: "220px",
-              }}
-            >
-              <div style={{ fontSize: "13px", opacity: 0.8, marginBottom: "6px" }}>
-                Weekly Platform Snapshot
-              </div>
-              <div style={{ fontSize: "22px", fontWeight: "700" }}>
-                {formatCurrency(totalWeeklySales)}
-              </div>
-            </div>
+    <div className="app-shell">
+      <header className="hero">
+        <div className="hero-text">
+          <p className="eyebrow">Project LocalLift</p>
+          <h1>Helping small businesses manage orders, inventory, and sales with less stress.</h1>
+          <p className="hero-description">
+            LocalLift is a simple and accessible digital toolkit designed for small and
+            immigrant-owned businesses that may not have the time, budget, or technical
+            experience to use complex software.
+          </p>
+          <div className="hero-buttons">
+            <button className="primary-btn">View Dashboard</button>
+            <button className="secondary-btn">Learn More</button>
           </div>
-        </header>
+        </div>
 
-        <section
-          aria-label="Summary metrics"
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(4, minmax(0, 1fr))",
-            gap: "18px",
-            marginBottom: "24px",
-          }}
-        >
-          <div style={cardStyle}>
-            <p style={{ margin: 0, color: "#64748b", fontSize: "14px" }}>
-              Businesses Tracked
-            </p>
-            <h2 style={{ margin: "14px 0 8px 0", fontSize: "34px" }}>
-              {totalBusinesses}
-            </h2>
-            <p style={{ margin: 0, color: "#475569", fontSize: "14px" }}>
-              Active businesses monitored this week
-            </p>
+        <div className="hero-card">
+          <h3>Weekly Overview</h3>
+          <div className="mini-stat">
+            <span>Total Businesses</span>
+            <strong>3</strong>
+          </div>
+          <div className="mini-stat">
+            <span>Weekly Sales</span>
+            <strong>$6,095</strong>
+          </div>
+          <div className="mini-stat">
+            <span>Accessibility Issues</span>
+            <strong>2 flagged</strong>
+          </div>
+          <div className="mini-stat">
+            <span>System Status</span>
+            <strong>Operational</strong>
+          </div>
+        </div>
+      </header>
+
+      <main className="main-content">
+        <section className="stats-grid">
+          <div className="stat-card">
+            <h3>Active Shops</h3>
+            <p>3</p>
+            <span>Businesses currently using the platform</span>
           </div>
 
-          <div style={cardStyle}>
-            <p style={{ margin: 0, color: "#64748b", fontSize: "14px" }}>
-              Low Stock Alerts
-            </p>
-            <h2 style={{ margin: "14px 0 8px 0", fontSize: "34px" }}>
-              {lowStockCount}
-            </h2>
-            <p style={{ margin: 0, color: "#475569", fontSize: "14px" }}>
-              Businesses needing inventory attention
-            </p>
+          <div className="stat-card">
+            <h3>Orders Processed</h3>
+            <p>127</p>
+            <span>Tracked this week across all businesses</span>
           </div>
 
-          <div style={cardStyle}>
-            <p style={{ margin: 0, color: "#64748b", fontSize: "14px" }}>
-              Accessibility Issues
-            </p>
-            <h2 style={{ margin: "14px 0 8px 0", fontSize: "34px" }}>
-              {accessibilityIssues}
-            </h2>
-            <p style={{ margin: 0, color: "#475569", fontSize: "14px" }}>
-              Items flagged for inclusive design review
-            </p>
+          <div className="stat-card">
+            <h3>Inventory Alerts</h3>
+            <p>4</p>
+            <span>Items that need restocking attention</span>
           </div>
 
-          <div style={cardStyle}>
-            <p style={{ margin: 0, color: "#64748b", fontSize: "14px" }}>
-              Weekly Sales Total
-            </p>
-            <h2 style={{ margin: "14px 0 8px 0", fontSize: "34px" }}>
-              {formatCurrency(totalWeeklySales)}
-            </h2>
-            <p style={{ margin: 0, color: "#475569", fontSize: "14px" }}>
-              Combined estimated sales across businesses
-            </p>
+          <div className="stat-card">
+            <h3>Accessibility Score</h3>
+            <p>86%</p>
+            <span>Average usability and compliance health</span>
           </div>
         </section>
 
-        <section
-          style={{
-            display: "grid",
-            gridTemplateColumns: "2fr 1fr",
-            gap: "24px",
-            alignItems: "start",
-          }}
-        >
-          <div style={cardStyle}>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                gap: "16px",
-                marginBottom: "18px",
-                flexWrap: "wrap",
-              }}
-            >
-              <div>
-                <h2 style={{ margin: 0, fontSize: "30px" }}>
-                  Business Dashboard Overview
-                </h2>
-                <p
-                  style={{
-                    margin: "8px 0 0 0",
-                    color: "#64748b",
-                    fontSize: "15px",
-                  }}
-                >
-                  Monitor sales, inventory, and accessibility progress in one place.
-                </p>
+        <section className="section-header">
+          <div>
+            <p className="section-label">Business Dashboard</p>
+            <h2>Small business activity snapshot</h2>
+          </div>
+          <button className="secondary-btn">Export Report</button>
+        </section>
+
+        <section className="business-grid">
+          {businesses.map((business) => (
+            <article className="business-card" key={business.id}>
+              <div className="business-top">
+                <div>
+                  <h3>{business.name}</h3>
+                  <p>{business.category}</p>
+                </div>
+                <span className="badge">{business.inventoryStatus}</span>
               </div>
 
-              <input
-                type="text"
-                placeholder="Search business name..."
-                aria-label="Search business name"
-                style={{
-                  padding: "12px 14px",
-                  borderRadius: "12px",
-                  border: "1px solid #cbd5e1",
-                  minWidth: "240px",
-                  fontSize: "14px",
-                  outline: "none",
-                }}
-              />
-            </div>
+              <div className="business-details">
+                <div>
+                  <span className="detail-label">Owner</span>
+                  <strong>{business.owner}</strong>
+                </div>
+                <div>
+                  <span className="detail-label">Location</span>
+                  <strong>{business.location}</strong>
+                </div>
+                <div>
+                  <span className="detail-label">Weekly Sales</span>
+                  <strong>{business.weeklySales}</strong>
+                </div>
+                <div>
+                  <span className="detail-label">Accessibility</span>
+                  <strong>{business.accessibility}</strong>
+                </div>
+              </div>
 
-            <div style={{ overflowX: "auto" }}>
-              <table
-                style={{
-                  width: "100%",
-                  borderCollapse: "separate",
-                  borderSpacing: 0,
-                }}
-              >
-                <thead>
-                  <tr style={{ backgroundColor: "#f8fafc" }}>
-                    <th
-                      style={{
-                        textAlign: "left",
-                        padding: "14px",
-                        fontSize: "14px",
-                        color: "#475569",
-                        borderBottom: "1px solid #e2e8f0",
-                        borderTopLeftRadius: "14px",
-                      }}
-                    >
-                      Business
-                    </th>
-                    <th
-                      style={{
-                        textAlign: "left",
-                        padding: "14px",
-                        fontSize: "14px",
-                        color: "#475569",
-                        borderBottom: "1px solid #e2e8f0",
-                      }}
-                    >
-                      Category
-                    </th>
-                    <th
-                      style={{
-                        textAlign: "left",
-                        padding: "14px",
-                        fontSize: "14px",
-                        color: "#475569",
-                        borderBottom: "1px solid #e2e8f0",
-                      }}
-                    >
-                      Inventory
-                    </th>
-                    <th
-                      style={{
-                        textAlign: "left",
-                        padding: "14px",
-                        fontSize: "14px",
-                        color: "#475569",
-                        borderBottom: "1px solid #e2e8f0",
-                      }}
-                    >
-                      Weekly Sales
-                    </th>
-                    <th
-                      style={{
-                        textAlign: "left",
-                        padding: "14px",
-                        fontSize: "14px",
-                        color: "#475569",
-                        borderBottom: "1px solid #e2e8f0",
-                      }}
-                    >
-                      Accessibility
-                    </th>
-                    <th
-                      style={{
-                        textAlign: "left",
-                        padding: "14px",
-                        fontSize: "14px",
-                        color: "#475569",
-                        borderBottom: "1px solid #e2e8f0",
-                        borderTopRightRadius: "14px",
-                      }}
-                    >
-                      Updated
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {businesses.map((business) => (
-                    <tr key={business.id}>
-                      <td
-                        style={{
-                          padding: "16px 14px",
-                          borderBottom: "1px solid #e2e8f0",
-                          verticalAlign: "top",
-                        }}
-                      >
-                        <div style={{ fontWeight: "700", marginBottom: "4px" }}>
-                          {business.name}
-                        </div>
-                        <div style={{ color: "#64748b", fontSize: "13px" }}>
-                          Owner: {business.owner}
-                        </div>
-                        <div style={{ color: "#64748b", fontSize: "13px", marginTop: "3px" }}>
-                          {business.location}
-                        </div>
-                      </td>
+              <div className="card-actions">
+                <button className="primary-btn small-btn">Open Profile</button>
+                <button className="secondary-btn small-btn">View Insights</button>
+              </div>
+            </article>
+          ))}
+        </section>
 
-                      <td
-                        style={{
-                          padding: "16px 14px",
-                          borderBottom: "1px solid #e2e8f0",
-                          color: "#334155",
-                        }}
-                      >
-                        {business.category}
-                      </td>
-
-                      <td
-                        style={{
-                          padding: "16px 14px",
-                          borderBottom: "1px solid #e2e8f0",
-                        }}
-                      >
-                        <span style={getInventoryBadgeStyle(business.inventoryStatus)}>
-                          {business.inventoryStatus}
-                        </span>
-                      </td>
-
-                      <td
-                        style={{
-                          padding: "16px 14px",
-                          borderBottom: "1px solid #e2e8f0",
-                          fontWeight: "600",
-                        }}
-                      >
-                        {formatCurrency(business.weeklySales)}
-                      </td>
-
-                      <td
-                        style={{
-                          padding: "16px 14px",
-                          borderBottom: "1px solid #e2e8f0",
-                        }}
-                      >
-                        <div
-                          style={{
-                            marginBottom: "8px",
-                          }}
-                        >
-                          <span
-                            style={getAccessibilityBadgeStyle(
-                              business.accessibilityStatus
-                            )}
-                          >
-                            {business.accessibilityStatus}
-                          </span>
-                        </div>
-                        <div style={{ color: "#475569", fontSize: "13px" }}>
-                          {business.accessibility}
-                        </div>
-                      </td>
-
-                      <td
-                        style={{
-                          padding: "16px 14px",
-                          borderBottom: "1px solid #e2e8f0",
-                          color: "#475569",
-                        }}
-                      >
-                        {business.lastUpdated}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+        <section className="impact-section">
+          <div className="impact-text">
+            <p className="section-label">Social Impact Goal</p>
+            <h2>Closing the digital gap for smaller businesses</h2>
+            <p>
+              LocalLift was designed to support small businesses that often get left behind by
+              expensive and overly complicated digital systems. The platform focuses on simple
+              workflows, readable layouts, and accessibility-friendly design so more business
+              owners can manage their operations with confidence.
+            </p>
           </div>
 
-          <div style={{ display: "grid", gap: "24px" }}>
-            <aside style={cardStyle}>
-              <h3 style={{ marginTop: 0, marginBottom: "14px", fontSize: "22px" }}>
-                Priority Actions
-              </h3>
-
-              <div
-                style={{
-                  backgroundColor: "#fef2f2",
-                  border: "1px solid #fecaca",
-                  borderRadius: "14px",
-                  padding: "14px",
-                  marginBottom: "12px",
-                }}
-              >
-                <strong style={{ display: "block", marginBottom: "6px" }}>
-                  Restock Alert
-                </strong>
-                <span style={{ color: "#7f1d1d", fontSize: "14px" }}>
-                  Brooklyn Bites Cafe and Sunrise Grocers need inventory updates.
-                </span>
-              </div>
-
-              <div
-                style={{
-                  backgroundColor: "#faf5ff",
-                  border: "1px solid #e9d5ff",
-                  borderRadius: "14px",
-                  padding: "14px",
-                  marginBottom: "12px",
-                }}
-              >
-                <strong style={{ display: "block", marginBottom: "6px" }}>
-                  Accessibility Review
-                </strong>
-                <span style={{ color: "#581c87", fontSize: "14px" }}>
-                  Add alt text, improve contrast, and label buttons for usability.
-                </span>
-              </div>
-
-              <div
-                style={{
-                  backgroundColor: "#eff6ff",
-                  border: "1px solid #bfdbfe",
-                  borderRadius: "14px",
-                  padding: "14px",
-                }}
-              >
-                <strong style={{ display: "block", marginBottom: "6px" }}>
-                  Community Impact
-                </strong>
-                <span style={{ color: "#1e3a8a", fontSize: "14px" }}>
-                  LocalLift supports small businesses with simpler and more inclusive
-                  digital tools.
-                </span>
-              </div>
-            </aside>
-
-            <aside style={cardStyle}>
-              <h3 style={{ marginTop: 0, marginBottom: "14px", fontSize: "22px" }}>
-                Recent Activity
-              </h3>
-
-              <ul
-                style={{
-                  listStyle: "none",
-                  padding: 0,
-                  margin: 0,
-                  display: "grid",
-                  gap: "14px",
-                }}
-              >
-                <li
-                  style={{
-                    paddingBottom: "12px",
-                    borderBottom: "1px solid #e2e8f0",
-                    fontSize: "14px",
-                    color: "#334155",
-                  }}
-                >
-                  Accessibility scan completed for Flatbush Fashion
-                </li>
-                <li
-                  style={{
-                    paddingBottom: "12px",
-                    borderBottom: "1px solid #e2e8f0",
-                    fontSize: "14px",
-                    color: "#334155",
-                  }}
-                >
-                  Inventory warning triggered for Brooklyn Bites Cafe
-                </li>
-                <li
-                  style={{
-                    paddingBottom: "12px",
-                    borderBottom: "1px solid #e2e8f0",
-                    fontSize: "14px",
-                    color: "#334155",
-                  }}
-                >
-                  Weekly sales updated for Crown Heights Prints
-                </li>
-                <li
-                  style={{
-                    fontSize: "14px",
-                    color: "#334155",
-                  }}
-                >
-                  New business profile added to LocalLift dashboard
-                </li>
-              </ul>
-            </aside>
+          <div className="impact-box">
+            <h3>Accessibility Features</h3>
+            <ul>
+              <li>Clear headings and readable text hierarchy</li>
+              <li>Simple navigation for less technical users</li>
+              <li>Color contrast focused on readability</li>
+              <li>Support for identifying WCAG-related issues</li>
+            </ul>
           </div>
         </section>
-      </div>
+      </main>
     </div>
   );
 }
