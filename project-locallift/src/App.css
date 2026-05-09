@@ -118,6 +118,12 @@ select {
   background: rgba(255, 255, 255, 0.08);
 }
 
+.sidebar-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
 .theme-toggle {
   width: 100%;
   background: white;
@@ -127,6 +133,22 @@ select {
   border-radius: 12px;
   font-weight: bold;
   cursor: pointer;
+}
+
+.language-toggle {
+  width: 100%;
+  background: transparent;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  padding: 12px 14px;
+  border-radius: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.language-toggle:hover {
+  background: rgba(255, 255, 255, 0.08);
 }
 
 .main {
