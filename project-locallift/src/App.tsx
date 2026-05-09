@@ -95,7 +95,7 @@ function App() {
       welcome: "Welcome to LocalLift Inventory Manager.",
       stockUpdated: "Stock updated successfully.",
       restocked: "Item marked as restocked.",
-      exportMessage: "Prototype export completed.",
+      exportMessage: "Inventory exported successfully.",
       totalInventoryItems: "Total Inventory Items",
       totalInventoryDesc: "Tracked products and supplies for this business",
       lowStockAlerts: "Low Stock Alerts",
@@ -138,7 +138,7 @@ function App() {
       allItemsMessage: "Inventory section: manage stock levels for individual items.",
       inventoryTable: "Inventory Table",
       allItems: "All Items",
-      totalItemsLabel: "total items",
+      totalItemsLabel: "items",
       reportsMessage: "Reports section: quick overview of inventory health and value.",
       inventorySummary: "Inventory Summary",
       businessReports: "Business Reports",
@@ -183,7 +183,7 @@ function App() {
       welcome: "Bienvenido al administrador de inventario LocalLift.",
       stockUpdated: "Inventario actualizado correctamente.",
       restocked: "Artículo marcado como reabastecido.",
-      exportMessage: "Exportación del prototipo completada.",
+      exportMessage: "Inventario exportado correctamente.",
       totalInventoryItems: "Total de artículos",
       totalInventoryDesc: "Productos y suministros registrados para este negocio",
       lowStockAlerts: "Alertas de bajo inventario",
@@ -226,7 +226,7 @@ function App() {
       allItemsMessage: "Sección de inventario: maneja los niveles de cada artículo.",
       inventoryTable: "Tabla de inventario",
       allItems: "Todos los artículos",
-      totalItemsLabel: "artículos en total",
+      totalItemsLabel: "artículos",
       reportsMessage: "Sección de reportes: resumen rápido de inventario y valor.",
       inventorySummary: "Resumen de inventario",
       businessReports: "Reportes del negocio",
@@ -325,6 +325,56 @@ function App() {
     return "badge good";
   };
 
+  const exportInventory = () => {
+    const headers = [
+      "Item Name",
+      "Category",
+      "Current Stock",
+      "Minimum Stock",
+      "Unit Cost",
+      "Last Updated",
+      "Stock Status",
+    ];
+
+    const rows = filteredItems.map((item) => [
+      item.name,
+      item.category,
+      item.stock,
+      item.minStock,
+      `$${item.price}`,
+      item.lastUpdated,
+      getStockStatus(item.stock, item.minStock),
+    ]);
+
+    const csvContent = [
+      headers.join(","),
+      ...rows.map((row) =>
+        row
+          .map((value) => `"${String(value).replace(/"/g, '""')}"`)
+          .join(",")
+      ),
+    ].join("\n");
+
+    const blob = new Blob([csvContent], {
+      type: "text/csv;charset=utf-8;",
+    });
+
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+
+    link.href = url;
+    link.download = `locallift-inventory-${new Date()
+      .toISOString()
+      .slice(0, 10)}.csv`;
+
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
+    URL.revokeObjectURL(url);
+    setMessage(t.exportMessage);
+  };
+
   const salesPercent = Math.min(
     100,
     Math.round((estimatedInventoryValue / 800) * 10)
@@ -420,10 +470,7 @@ function App() {
                 ))}
               </select>
 
-              <button
-                className="secondary-btn"
-                onClick={() => setMessage(t.exportMessage)}
-              >
+              <button className="secondary-btn" onClick={exportInventory}>
                 {t.export}
               </button>
             </section>
@@ -463,7 +510,9 @@ function App() {
                     <p className="panel-label">{t.inventoryRecords}</p>
                     <h2>{t.currentStock}</h2>
                   </div>
-                  <span className="count-pill">{filteredItems.length} items</span>
+                  <span className="count-pill">
+                    {filteredItems.length} {t.totalItemsLabel}
+                  </span>
                 </div>
 
                 <div className="inventory-grid">
